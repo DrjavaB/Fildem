@@ -347,15 +347,16 @@ class GlobalMenu(Gtk.Application):
 		self.on_hide_window()
 
 	def move_window(self, x: int):
-		primary_mon = Gdk.Display.get_default().get_primary_monitor()
-		if primary_mon == None:
+		self.window.set_custom_position(x)
+# 		primary_mon = Gdk.Display.get_default().get_primary_monitor()
+# 		if primary_mon == None:
 			# Sometimes Wayland returns None
 			# It seems to be no way of knowing the primary monitor,
 			# we just grab the first one
-			primary_mon = Gdk.Display.get_default().get_monitor(0)
+# 			primary_mon = Gdk.Display.get_default().get_monitor(0)
 
-		x = primary_mon.get_geometry().x + x / primary_mon.get_scale_factor()
-		self.window.set_custom_position(x)
+# 		x = primary_mon.get_geometry().x + x / primary_mon.get_scale_factor()
+# 		self.window.set_custom_position(x)
 
 	def on_menu_activated(self, menu: str, x: int):
 		self.move_window(x)
